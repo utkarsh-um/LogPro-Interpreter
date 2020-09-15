@@ -1,0 +1,19 @@
+
+To compile just do make
+To run : ./assignment6 <filename_of_file_containing_knowledge_base>
+and queries can be given input to stdin
+
+Knowledge base containing all facts and rules is an array of maximum size 5000 size could be increased if required.
+
+To exit query mode type "halt." (without quotes)
+
+For queries with more than one solution : solutions are displayed one by one to view next solution press ; and enter
+
+_____________________________________________________________________________________________________________________
+
+First all of knowledge base is lexed and yacced (tokenizer.mll and parser.mly) and an array of facts and rules is created (createBase)
+In the created database no two different clauses have same variable names , this is taken care by the fucntion rectify which names the variables as _Ui where i is a number. This function ensures that within a clause the the atoms with same variables still have the same variable names.
+
+After database is created the queries/goals are taken as input from stdin and they are lexed and yaccedd (lexquery.mll and parsequery.mly) after this findAns function is called with argument as the query/goal (=atom list) which further calls for bactAtom function after this only the variables in the query/goals are printed with their respective solutions.
+
+backAtom function is a bactracking algorithm which runs on an atom list finds solution to one atom(findAtom and mgu) and applies that to the remaining list .
